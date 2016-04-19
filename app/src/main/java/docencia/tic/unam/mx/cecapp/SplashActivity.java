@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.facebook.FacebookSdk;
+import com.twitter.sdk.android.*;
 import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.*;
+
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
 import java.util.Random;
@@ -22,8 +26,10 @@ public class SplashActivity extends AppCompatActivity {
     //private Typeface avenirFont;
 
     /** Llaves para twitter */
-    private static final String TWITTER_KEY = "xxx";
-    private static final String TWITTER_SECRET = "xxxx";
+    private static final String TWITTER_KEY = BuildConfig.TWITTER_CONSUMER_KEY;
+    private static final String TWITTER_SECRET = BuildConfig.TWITTER_CONSUMER_SECRET;
+//    private static final String TWITTER_KEY = "xxx";
+//    private static final String TWITTER_SECRET = "xxxx";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

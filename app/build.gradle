@@ -10,6 +10,16 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
+//Add these lines
+//def TWITTER_CONSUMER_KEY = '"' + TwitterConsumerKey + '"' ?: '"Define Twitter Consumer key"';
+//def TWITTER_CONSUMER_SECRET = '"' + TwitterConsumerSecret + '"' ?: '"Define Twitter Consumer secret"';
+
+//android.buildTypes.each {
+//    type -&gt;
+//    type.buildConfigField 'String', 'TWITTER_CONSUMER_KEY', TWITTER_CONSUMER_KEY
+//    type.buildConfigField 'String', 'TWITTER_CONSUMER_SECRET', TWITTER_CONSUMER_SECRET
+//}
+
 repositories {
     maven { url 'https://maven.fabric.io/public' }
     mavenCentral()
@@ -31,6 +41,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "String", 'TWITTER_CONSUMER_KEY', TwitterConsumerKey
+            buildConfigField "String", 'TWITTER_CONSUMER_SECRET', TwitterConsumerSecret
         }
     }
 }

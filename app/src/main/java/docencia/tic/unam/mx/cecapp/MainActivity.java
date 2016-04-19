@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.w(">>>MainActivity", "onCreate savedInstanceState = "+(savedInstanceState == null ? "null" : "not null"));
-
         callbackManager = CallbackManager.Factory.create();
         userInfoPrefs = this.getSharedPreferences(
                 Constants.USER_INFO_PREFERENCES, Context.MODE_PRIVATE);
