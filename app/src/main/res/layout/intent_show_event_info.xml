@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/padding_extremos"
+        android:paddingBottom="@dimen/padding_extremos">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_extremos"
+            android:paddingLeft="@dimen/padding_lados"
+            android:paddingRight="@dimen/padding_lados">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adress"
+                android:id="@+id/esi_adrres_tv_orig"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_adrres_tv_mod"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extremos"
+                android:text="@string/web_page"
+                android:id="@+id/esi_web_tv_orig"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_web_tv_mod"
+                android:textSize="20sp"
+                android:autoLink="web" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extremos"
+                android:text="@string/facebook"
+                android:id="@+id/esi_fb_tv_orig"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_fb_tv_mod"
+                android:textSize="20sp"
+                android:autoLink="web" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extremos"
+                android:text="@string/twitter"
+                android:id="@+id/esi_tw_tv_orig"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_tw_tv_mod"
+                android:textSize="20sp"
+                android:autoLink="web" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_extremos"
+                android:text="@string/youtube"
+                android:id="@+id/esi_yt_tv_orig"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_yt_tv_mod"
+                android:textSize="20sp"
+                android:autoLink="web" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/esi_img"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

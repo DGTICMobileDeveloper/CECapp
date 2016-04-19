@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            ext:documentView_insetPaddingBottom="10dp"
+            ext:documentView_insetPaddingLeft="10dp"
+            ext:documentView_insetPaddingRight="10dp"
+            ext:documentView_insetPaddingTop="10dp"
+            ext:documentView_antialias="true"
+            ext:documentView_cacheConfig="auto_quality"
+            ext:documentView_lineHeightMultiplier="1"
+            ext:documentView_text="@string/cec_description"
+            ext:documentView_textAlignment="justified"
+            ext:documentView_textColor="@android:color/black"
+            ext:documentView_textFormat="plain"
+            ext:documentView_textSize="16sp"
+            ext:documentView_textSubPixel="true"
+            ext:documentView_wordSpacingMultiplier="1"
+            android:background="#003e4dd1" />
+        <!--
+        <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ext:documentView_text="@string/cec_ubicacion"
+            ext:documentView_insetPaddingBottom="10dp"
+            ext:documentView_insetPaddingLeft="10dp"
+            ext:documentView_insetPaddingRight="10dp"
+            ext:documentView_insetPaddingTop="10dp"
+            ext:documentView_textFormat="plain"
+            ext:documentView_textSize="16sp" />
+         -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logoCEC"
+            android:src="@drawable/ic_splash_screen"
+            android:layout_gravity="center"
+            android:paddingBottom="@dimen/padding_extremos"
+            android:paddingTop="@dimen/padding_extremos"/>
+
+
+    </LinearLayout>
+</ScrollView>

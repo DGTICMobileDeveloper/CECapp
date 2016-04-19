@@ -1,0 +1,119 @@
+<resources>
+    <string name="app_name">CEC App</string>
+    <string name="cec_description">\t<b><strong>Inmueble medular para eventos multitudinarios con tintes académico-universitarios, presencia internacional y un moderno diseño arquitectónico; todo esto y más en la Universidad Nacional Autónoma de México.</strong></b>\n
+    \n\tLa UNAM, una de las principales universidades de América Latina, galardonada por la UNESCO como Patrimonio Cultural de la Humanidad, y con sólida presencia en Iberoamérica; hoy en día cuenta con un majestuoso centro de exposiciones orientado a las actividades de docencia, ciencia, investigación, cultura, deporte, entretenimiento, gestión administrativa, así como vinculación con empresas y organizaciones nacionales e internacionales.\n
+    \n\tEl Centro de Exposiciones y Congresos UNAM abre sus puertas no sólo a sus más de 337 mil alumnos y sus cerca de 40 mil académicos e investigadores, invita a todas y cada una de las personas que deseen visitar, participar y realizar magnos eventos enfocados al mundo universitario.\n
+    \nUbicado en:\nAv Del Imán #10, Cuidad Universitaria, Coyoacán, Ciudad de México</string>
+    <string name="cec_ubicacion">Ubicado en:\nAv Del Imán #10, Cuidad Universitaria, Coyoacán, Ciudad de México</string>
+
+    <string name="string_prueba">{"response_code":0,"response_msg":"Procesamientoconcluidoexitósamente.","response_data":{"mapa":[{"id":1,"coordenadas":{"x":25,"y":25,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":2,"coordenadas":{"x":200,"y":25,"w":225,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":3,"coordenadas":{"x":475,"y":25,"w":175,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":4,"coordenadas":{"x":25,"y":175,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":5,"coordenadas":{"x":200,"y":175,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":6,"coordenadas":{"x":375,"y":175,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":7,"coordenadas":{"x":25,"y":325,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":8,"coordenadas":{"x":200,"y":325,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":9,"coordenadas":{"x":375,"y":325,"w":150,"h":100},"color":{"alpha":255,"R":0,"G":0,"B":0}},{"id":10,"coordenadas":{"x":575,"y":175,"w":100,"h":250},"color":{"alpha":255,"R":0,"G":0,"B":0}}]}}</string>
+    <string name="string_prueba2">{ "response_code": 0, "response_msg": "Procesamiento concluido exitósamente.", "response_data": { "days": [ { "date":"2016-05-05", "maps": [ { "level_id": 1, "name": "Sotano", "filled": true, "places": [ { "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 2, "name": "Planta baja", "filled": false, "places": [ { "filled": true, "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 2}, {"id": 12}, {"id": 22} ], "coordenadas": { "x": 200, "y": 25, "w": 225, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 3}, {"id": 13}, {"id": 23} ], "coordenadas": { "x": 475, "y": 25, "w": 175, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 4}, {"id": 14}, {"id": 24} ], "coordenadas": { "x": 25, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 5}, {"id": 15}, {"id": 25} ], "coordenadas": { "x": 200, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 6}, {"id": 16}, {"id": 26} ], "coordenadas": { "x": 375, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 7}, {"id": 17}, {"id": 27} ], "coordenadas": { "x": 25, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 8}, {"id": 18}, {"id": 28} ], "coordenadas": { "x": 200, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 9}, {"id": 19}, {"id": 29} ], "coordenadas": { "x": 375, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 3, "name": "Mezzanie", "filled": false, "places": [ { "filled": true, "actividades": [ {"id": 10}, {"id": 20} ], "coordenadas": { "x": 575, "y": 175, "w": 100, "h": 250 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] } ] }, { "date":"2016-05-06", "maps": [ { "level_id": 1, "name": "Sotano", "filled": true, "places": [ { "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 2, "name": "Planta baja", "filled": false, "places": [ { "filled": true, "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 2}, {"id": 12}, {"id": 22} ], "coordenadas": { "x": 200, "y": 25, "w": 225, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 3}, {"id": 13}, {"id": 23} ], "coordenadas": { "x": 475, "y": 25, "w": 175, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 4}, {"id": 14}, {"id": 24} ], "coordenadas": { "x": 25, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 5}, {"id": 15}, {"id": 25} ], "coordenadas": { "x": 200, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 6}, {"id": 16}, {"id": 26} ], "coordenadas": { "x": 375, "y": 175, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 7}, {"id": 17}, {"id": 27} ], "coordenadas": { "x": 25, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 8}, {"id": 18}, {"id": 28} ], "coordenadas": { "x": 200, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 9}, {"id": 19}, {"id": 29} ], "coordenadas": { "x": 375, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 3, "name": "Mezzanie", "filled": false, "places": [ { } ] } ] }, { "date":"2016-05-07", "maps": [ { "level_id": 1, "name": "Sotano", "filled": true, "places": [ { "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 2, "name": "Planta baja", "filled": false, "places": [ { "filled": true, "actividades": [ {"id": 1}, {"id": 11}, {"id": 21} ], "coordenadas": { "x": 25, "y": 25, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 7}, {"id": 17}, {"id": 27} ], "coordenadas": { "x": 25, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } }, { "actividades": [ {"id": 9}, {"id": 19}, {"id": 29} ], "coordenadas": { "x": 375, "y": 325, "w": 150, "h": 100 }, "color": { "alpha": 255, "R": 0, "G": 0, "B": 0 } } ] }, { "level_id": 3, "name": "Mezzanie", "filled": false, "places": [ ] } ] } ] } }</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_social_networks">Redes sociales</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="navdraw_evento">Eventos</string>
+    <string name="navdraw_config">Registro</string>
+    <string name="navdraw_acerca">Acerca de &#8230;</string>
+    <string name="navdraw_fb">Facebook</string>
+    <string name="navdraw_tw">Twitter</string>
+    <string name="search">Buscar</string>
+    <string name="config_save">Guardar cambios</string>
+    <string name="config_usr_info_save_msg">Información enviada al servidor</string>
+    <string name="config_save_msg">Cambios guardados en</string>
+    <string name="config_save_action">Deshacer</string>
+    <string name="pre_inscription">Preinscripción</string>
+
+    <string name="no_id_msg">No se encuentra registrado en el sistema. \nPara registrarse vaya al menú, a la sección \'Registro\' ingrese sus datos y guardelos</string>
+
+    <string name="usr_name">Nombre(s)</string>
+    <string name="usr_lastName">Apellidos</string>
+    <string name="usr_academic_provenance">Procedencia académica</string>
+    <string name="usr_birth_date">Fecha de nacimiento</string>
+    <string name="usr_birth_date_b">Definir</string>
+    <string name="usr_gender">Género</string>
+    <string name="usr_num_cta">Número de cuenta</string>
+    <string name="usr_academic_grade">Grado de estudios</string>
+    <string name="usr_mail">Correo electrónico</string>
+    <string name="usr_phone_number">Teléfono</string>
+    <string name="usr_adress">Dirección</string>
+
+    <string name="adress">Dirección</string>
+    <string name="web_page">Página web</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <string name="youtube">YouTube</string>
+
+    <!-- Mensajes de las listas de eventos-->
+    <!--Lista vacía-->
+    <string name="event_list_general">No se encontraron eventos este mes</string>
+    <string name="event_list_interests">No se ecnontraron eventos de tu interés (este mes)</string>
+    <string name="event_list_search">No se encontraron eventos con el término <b>%1$s</b></string>
+    <!--Error 1-->
+    <string name="event_list_general_e1">Error en los parámetros</string>
+    <string name="event_list_interests_e1">Aún no tienes temas de interés definidos</string>
+    <string name="event_list_search_e1">Error en los parámetros</string>
+
+    <!-- Al parecer no hay problema si se quita 'seleccionar'
+    de estos arreglos
+    <item>Seleccionar</item> -->
+    <string-array name="academic_grade_array">
+        <item>Primaria</item>
+        <item>Secundaria</item>
+        <item>Bachillerato</item>
+        <item>Licenciatura</item>
+        <item>Maestría</item>
+        <item>Doctorado</item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Hombre</item>
+        <item>Mujer</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="category_array">
+        <item>Descripción</item>
+        <item>Ubicación</item>
+        <item>Fecha</item>
+        <item>Organizador</item>
+        <item>Patrocinador</item>
+        <item>Link</item>
+    </string-array>
+
+    <string-array name="date_format_array">
+        <item>G</item>
+        <item>EEE</item>
+        <item>EEEE</item>
+        <item>HH</item>
+        <item>mm</item>
+        <item>dd-MM-yyyy</item>
+        <item>yyyy-MM-dd</item>
+        <item>dd</item>
+        <item>MM</item>
+        <item>MMM</item>
+        <item>MMMM</item>
+        <item>MMMMM</item>
+        <item>yyyy</item>
+        <item>hh</item>
+        <item>hh:mma</item>
+        <item>EEE dd \'de\' MMM</item>
+    </string-array>
+
+    <string-array name="country_arrays">
+        <item>Malaysia</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+
+    <!-- Otro -->
+    <string name="facebook_app_id">1139043419492448</string>
+</resources>

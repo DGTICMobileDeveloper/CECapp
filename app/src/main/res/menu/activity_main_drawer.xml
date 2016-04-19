@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_eventos"
+            android:icon="@drawable/ic_events"
+            android:title="@string/navdraw_evento" />
+        <item
+            android:id="@+id/nav_configuracion"
+            android:icon="@drawable/ic_registro1"
+            android:title="@string/navdraw_config" />
+        <item
+            android:id="@+id/nav_acerca"
+            android:icon="@drawable/ic_acerca"
+            android:title="@string/navdraw_acerca" />
+    </group>
+
+    <item android:title="@string/navigation_drawer_social_networks">
+        <menu>
+            <item
+                android:id="@+id/fb"
+                android:icon="@drawable/com_facebook_button_icon"
+                android:title="@string/navdraw_fb"/>
+            <item
+                android:id="@+id/tw"
+                android:icon="@drawable/tw__composer_logo_blue"
+                android:title="@string/navdraw_tw" />
+        </menu>
+    </item>
+
+</menu>
