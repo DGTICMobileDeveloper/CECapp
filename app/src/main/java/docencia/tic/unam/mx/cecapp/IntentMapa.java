@@ -239,6 +239,7 @@ public class IntentMapa extends AppCompatActivity {
         final ServerMapsResponse serverMapsResponse = ServerMapsResponse.parseJSON(responseString);
         responseCode = serverMapsResponse.getRespCode();
 
+
         if(responseCode == 0){
 //            first = false;
             final GeneralMap mapaInfo = serverMapsResponse.getData().getMapList().get(spinnerMapa.getSelectedItemPosition());
