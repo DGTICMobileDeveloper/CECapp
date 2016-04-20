@@ -17,25 +17,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:id="@+id/spinner1" />
+            android:id="@+id/spinner_dia" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_g"
-            android:id="@+id/imageView2" />
+            android:id="@+id/iv_dia" />
 
         <Spinner
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:id="@+id/spinner2" />
+            android:id="@+id/spinner_mapa" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_loc"
-            android:id="@+id/imageView3" />
+            android:id="@+id/iv_mapa" />
     </LinearLayout>
 
     <ImageView

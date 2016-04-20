@@ -6,12 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,13 +41,10 @@ import docencia.tic.unam.mx.cecapp.models.ServerEventListResponse;
 import docencia.tic.unam.mx.cecapp.models.ServerEventResponse;
 import docencia.tic.unam.mx.cecapp.models.ServerGetUserEventsResponse;
 import docencia.tic.unam.mx.cecapp.models.ServerInterestListResponse;
-import docencia.tic.unam.mx.cecapp.models.ServerMapResponse;
 import docencia.tic.unam.mx.cecapp.models.ServerRegisterUserInfoResponse;
 import docencia.tic.unam.mx.cecapp.models.ServerRegisterUserToEventResponse;
-import docencia.tic.unam.mx.cecapp.models.OldStand;
 import docencia.tic.unam.mx.cecapp.tabs.InfoUsuarioGeneralFragment;
 import docencia.tic.unam.mx.cecapp.tabs.InfoUsuarioInteresesFragment;
-import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class AsyncHttpRetriever extends AsyncHttpClient {
     public final boolean REGISTER_T = true;
@@ -78,7 +69,6 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
 //    public static ArrayList<ItemListaInteres> arrayOfInterests;
     protected ImageView mapa;
     protected boolean tablet;
-    protected PhotoViewAttacher photoViewAttacher;
     //TODO meter lo que no tiene que ser global a donde pertenezca
 
     public AsyncHttpRetriever(ProgressBar pb, Context c, byte origen, ListView lv, RequestParams rParams, TextView textView){
@@ -148,7 +138,8 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
         this.origen = origen;
         this.tablet = isTablet;
         this.context = activity;
-        //putMap(stringPrueba);
+        IntentMapa.jsonAsString = stringPrueba;
+        IntentMapa.putResponse(stringPrueba);
     }
 
     public void postCommand(String link){
@@ -289,7 +280,7 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
                         putEventList(responseString);
                         break;
                     case Constants.MODE_GET_EVENT_MAP:
-                        putMap(responseString);
+                        IntentMapa.putResponse(responseString);
                         break;
                 }
             }
@@ -599,7 +590,8 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
         }
     }
 
-    public void putMap(String responseString){
+/*
+    public void putResponse(String responseString){
         final ServerMapResponse serverMapResponse = ServerMapResponse.parseJSON(responseString);
         responseCode = serverMapResponse.getRespCode();
 
@@ -653,6 +645,7 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
                     + ": " + serverMapResponse.getRespMsg(), Toast.LENGTH_SHORT).show();
         }
     }
+    */
 
     /** Métodos de apoyo
      *
@@ -894,7 +887,7 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
         }
         return auxList;
     }
-
+    /*
     public Bitmap getMapaDibujado(ServerMapResponse.RespData data) {
         List<OldStand> listaOldStands = data.getOldStandList();
         BitmapFactory.Options myOptions = new BitmapFactory.Options();
@@ -973,4 +966,5 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
             return mutableBitmap;
         }
     }
+    */
 }

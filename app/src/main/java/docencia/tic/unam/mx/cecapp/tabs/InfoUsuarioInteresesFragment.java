@@ -247,7 +247,7 @@ public class InfoUsuarioInteresesFragment extends Fragment implements CustomFrag
          * setAuxDataWithSavedPreferences() aquí (se quitaría ese y el de
          * stringToBoolean)*/
         //Log.i(">>>InfoUsuarioIn...", "saveChanges " + interesLV);
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
         int x;
         InterestListArrayAdapter.ViewHolder viewHolder;
         //ArrayList<ItemListaInteres> dataToSave = new ArrayList<>();
