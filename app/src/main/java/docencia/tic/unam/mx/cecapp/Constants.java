@@ -92,8 +92,8 @@ public class Constants {
 
 
     /** Mapa */
-    public static final int X_OFFSET = 270;
-    public static final int Y_OFFSET = 111;
+    public static final int X_OFFSET = 0;
+    public static final int Y_OFFSET = 0;
     public static final int W = 1148;
     public static final int H = 735;
 

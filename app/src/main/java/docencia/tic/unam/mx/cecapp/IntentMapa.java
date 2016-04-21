@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.RequestParams;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import docencia.tic.unam.mx.cecapp.models.GeneralMap;
@@ -37,7 +38,9 @@ public class IntentMapa extends AppCompatActivity {
     private static ImageView mapa;
     private static Activity context;
     private static ArrayAdapter<String> adapterDia;
+    private static List<String> dayList;
     private static ArrayAdapter<String> adapterMapa;
+    private static List<String> mapList;
     protected static String jsonAsString;
 
     protected static boolean first;
@@ -62,59 +65,84 @@ public class IntentMapa extends AppCompatActivity {
         // Debb
 //        String strigPrueba = getResources().getString(R.string.string_prueba2);
 //        ServerMapsResponse response = ServerMapsResponse.parseJSON("{ \"response_code\":0, \"response_msg\":\"Procesamiento concluido exitósamente.\", \"response_data\":{ \"maps\":[ { \"id\":1, \"name\":\"Planta Baja General\", \"permanentActivities\":[ { \"id\":24, \"boundaries\":{ \"x\":0, \"y\":0, \"w\":100, \"h\":200 }, \"rgbColor\":[ 120, 203, 200 ], \"activity\":{ \"id\":10, \"name\":\"Activity 3\", \"schedule\":\"08:00-17:00\" } }, { \"id\":28, \"boundaries\":{ \"x\":120, \"y\":300, \"w\":200, \"h\":400 }, \"rgbColor\":[ 3, 33, 233 ], \"activity\":{ \"id\":10, \"name\":\"Activity 3\", \"schedule\":\"08:00-17:00\" } } ], \"activitiesByDate\":[ { \"day\":\"2016-04-09\", \"locations\":[ { \"id\":12, \"boundaries\":{ \"x\":0, \"y\":0, \"w\":100, \"h\":200 }, \"rgbColor\":[ 0, 0, 0 ], \"activities\":[ { \"id\":43, \"name\":\"Activity 20\", \"schedule\":\"09:00-12:00\" }, { \"id\":44, \"name\":\"Activity 22\", \"schedule\":\"13:00-15:00\" } ] }, { \"id\":13, \"boundaries\":{ \"x\":120, \"y\":50, \"w\":100, \"h\":200 }, \"rgbColor\":[ ], \"activities\":[ { \"id\":48, \"name\":\"Activity 15\", \"schedule\":\"09:00-10:00\" }, { \"id\":49, \"name\":\"Activity 30\", \"schedule\":\"10:00-12:00\" }, { \"id\":50, \"name\":\"Activity 32\", \"schedule\":\"12:00-16:00\" } ] }, { \"id\":14, \"boundaries\":{ \"x\":150, \"y\":290, \"w\":200, \"h\":300 }, \"rgbColor\":[ 0, 0, 0 ], \"activities\":[ { \"id\":31, \"name\":\"Activity 6\", \"schedule\":\"09:00-12:00\" } ] } ] }, { \"day\":\"2016-04-10\", \"locations\":[ { \"id\":12, \"boundaries\":{ \"x\":0, \"y\":0, \"w\":100, \"h\":200 }, \"rgbColor\":[ 0, 0, 0 ], \"activities\":[ { \"id\":43, \"name\":\"Activity 20\", \"schedule\":\"09:00-12:00\" } ] }, { \"id\":13, \"boundaries\":{ \"x\":120, \"y\":50, \"w\":100, \"h\":200 }, \"rgbColor\":[ ], \"activities\":[ { \"id\":48, \"name\":\"Activity 15\", \"schedule\":\"09:00-10:00\" } ] } ] } ] }, { \"id\":2, \"name\":\"Mezzanine General\", \"permanentActivities\":[ ], \"activitiesByDate\":[ ] }, { \"id\":3, \"name\":\"Sótano General\", \"permanentActivities\":[ ], \"activitiesByDate\":[ ] } ] } }");
-        String strigPrueba = "{ \"response_code\": 0, \"response_msg\": \"Procesamiento concluido exitósamente.\", \"response_data\": { \"maps\": [ { \"id\": 1, \"name\": \"Planta Baja General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 0, \"y\": 0, \"w\": 100, \"h\": 200 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 120, \"y\": 300, \"w\": 200, \"h\": 400 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 50, \"y\": 50, \"w\": 100, \"h\": 150 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 220, \"y\": 50, \"w\": 75, \"h\": 200 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 150, \"y\": 200, \"w\": 200, \"h\": 100 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 0, \"y\": 0, \"w\": 100, \"h\": 200 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 120, \"y\": 50, \"w\": 100, \"h\": 200 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 2, \"name\": \"Mezzanine General\", \"permanentActivities\": [], \"activitiesByDate\": [] }, { \"id\": 3, \"name\": \"Sótano General\", \"permanentActivities\": [], \"activitiesByDate\": [] } ] } }";
+        //String strigPrueba = "{ \"response_code\": 0, \"response_msg\": \"Procesamiento concluido exitósamente.\", \"response_data\": { \"maps\": [ { \"id\": 1, \"name\": \"Planta Baja General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 2, \"name\": \"Mezzanine General\", \"permanentActivities\": [], \"activitiesByDate\": [] }, { \"id\": 3, \"name\": \"Sótano General\", \"permanentActivities\": [], \"activitiesByDate\": [] } ] } }";
+        //String strigPrueba = "{ \"response_code\": 0, \"response_msg\": \"Procesamiento concluido exitósamente.\", \"response_data\": { \"maps\": [ { \"id\": 1, \"name\": \"Planta Baja General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 2, \"name\": \"Mezzanine General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 139, \"y\": 114, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 226, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 344, \"y\": 340, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 3, \"name\": \"Sótano General\", \"permanentActivities\": [], \"activitiesByDate\": [] } ] } }";
+        //String strigPrueba = "{ \"response_code\": 0, \"response_msg\": \"Procesamiento concluido exitósamente.\", \"response_data\": { \"maps\": [ { \"id\": 1, \"name\": \"Planta Baja General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 2, \"name\": \"Mezzanine General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 139, \"y\": 114, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 226, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 344, \"y\": 340, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 3, \"name\": \"Sótano General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] } ] } ] } }";
+        String strigPrueba = "{ \"response_code\": 0, \"response_msg\": \"Procesamiento concluido exitósamente.\", \"response_data\": { \"maps\": [ { \"id\": 1, \"name\": \"Planta Baja General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 711, \"y\": 220, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] }, { \"day\": \"2016-04-10\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 669, \"y\": 455, \"w\": 65, \"h\": 152 }, \"rgbColor\": [ 50, 50, 50 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 815, \"y\": 458, \"w\": 52, \"h\": 149 }, \"rgbColor\": [ 58, 90, 210 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" } ] } ] } ] }, { \"id\": 2, \"name\": \"Mezzanine General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [] }, { \"id\": 3, \"name\": \"Sótano General\", \"permanentActivities\": [ { \"id\": 24, \"boundaries\": { \"x\": 239, \"y\": 214, \"w\": 170, \"h\": 68 }, \"rgbColor\": [ 120, 203, 200 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } }, { \"id\": 28, \"boundaries\": { \"x\": 243, \"y\": 326, \"w\": 167, \"h\": 70 }, \"rgbColor\": [ 3, 33, 233 ], \"activity\": { \"id\": 10, \"name\": \"Activity 3\", \"schedule\": \"08:00-17:00\" } } ], \"activitiesByDate\": [ { \"day\": \"2016-04-09\", \"locations\": [ { \"id\": 12, \"boundaries\": { \"x\": 244, \"y\": 440, \"w\": 316, \"h\": 137 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 43, \"name\": \"Activity 20\", \"schedule\": \"09:00-12:00\" }, { \"id\": 44, \"name\": \"Activity 22\", \"schedule\": \"13:00-15:00\" } ] }, { \"id\": 13, \"boundaries\": { \"x\": 475, \"y\": 219, \"w\": 193, \"h\": 172 }, \"rgbColor\": [ 100, 100, 100 ], \"activities\": [ { \"id\": 48, \"name\": \"Activity 15\", \"schedule\": \"09:00-10:00\" }, { \"id\": 49, \"name\": \"Activity 30\", \"schedule\": \"10:00-12:00\" }, { \"id\": 50, \"name\": \"Activity 32\", \"schedule\": \"12:00-16:00\" } ] }, { \"id\": 14, \"boundaries\": { \"x\": 611, \"y\": 320, \"w\": 199, \"h\": 174 }, \"rgbColor\": [ 200, 100, 50 ], \"activities\": [ { \"id\": 31, \"name\": \"Activity 6\", \"schedule\": \"09:00-12:00\" } ] } ] } ] } ] } }";
         first = true;
+
 
         mapa = (ImageView) findViewById(R.id.mapa);
         mapa.setAdjustViewBounds(true);
 
+        dayList = new ArrayList<>();
+        mapList = new ArrayList<>();
+
         spinnerDia = (Spinner) findViewById(R.id.spinner_dia);
-        adapterDia = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-//                View v = super.getView(position, convertView, parent);
-//                if (position == getCount()) {
-//                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
-//                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
-//                }
-//                return v;
-                return super.getView(position, convertView, parent);
-            }
-            @Override
-            public int getCount() {
-                return super.getCount();
-            }
-        };
+        adapterDia = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item, dayList);
+//        adapterDia = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item) {
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+////                View v = super.getView(position, convertView, parent);
+////                if (position == getCount()) {
+////                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
+////                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
+////                }
+////                return v;
+//                return super.getView(position, convertView, parent);
+//            }
+//            @Override
+//            public int getCount() {
+//                return super.getCount();
+//            }
+//        };
         adapterDia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterDia.add("Fecha");
+        dayList.add("Fecha");
         spinnerDia.setAdapter(adapterDia);
+        spinnerDia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            if(spinnerDia.getCount() > 0) {
+                                putInfoThenMapa(jsonAsString, position);
+                            }
+                            //Log.i(">>> onItemSelected", "pos " + position);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+//                        putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(0).getDay()));
+                        //Log.i(">>> onNothingSelected", dayStandListInfo.get(0).getDay());
+                        }
+                    });
 
         spinnerMapa = (Spinner) findViewById(R.id.spinner_mapa);
-        adapterMapa = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-//                View v = super.getView(position, convertView, parent);
-//                if (position == getCount()) {
-//                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
-//                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
-//                }
-//                return v;
-                return super.getView(position, convertView, parent);
-            }
-            @Override
-            public int getCount() {
-                return super.getCount();
-            }
-        };
+        adapterMapa = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item, mapList);
+//        adapterMapa = new ArrayAdapter<String>(IntentMapa.this, android.R.layout.simple_spinner_dropdown_item) {
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+////                View v = super.getView(position, convertView, parent);
+////                if (position == getCount()) {
+////                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
+////                    ((TextView)v.findViewById(android.R.id.text1)).setHint(getItem(getCount())); //"Hint to be displayed"
+////                }
+////                return v;
+//                return super.getView(position, convertView, parent);
+//            }
+//            @Override
+//            public int getCount() {
+//                return super.getCount();
+//            }
+//        };
         adapterMapa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterMapa.add("Planta baja general");
-        adapterMapa.add("Mezzanie general");
-        adapterMapa.add("Sótano general");
+        mapList.add("Planta baja general");
+        mapList.add("Mezzanie general");
+        mapList.add("Sótano general");
+        adapterMapa.notifyDataSetChanged();
         spinnerMapa.setAdapter(adapterMapa);
         spinnerMapa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(">>> spinMapa ItemSel", "pos " + position + first);
+                //Log.i(">>> spinMapa ItemSel", String.format("pos %d %b", position, first));
 //                setMapaDrawable(position);
 //    //                if(jsonAsString != null && !jsonAsString.equals("")){
 //                    if(jsonAsString != null){
@@ -124,8 +152,11 @@ public class IntentMapa extends AppCompatActivity {
                     setMapaDrawable(position);
                     //                if(jsonAsString != null && !jsonAsString.equals("")){
                     if(jsonAsString != null){
+                        dayList.clear();
+                        dayList.add("Fecha");
                         putResponse(jsonAsString);
                     }
+                    //adapterDia.notifyDataSetChanged();
                 } else {
                     first = false;
                 }
@@ -133,7 +164,7 @@ public class IntentMapa extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                Log.i(">>> spinMapa onNothing", "pos " + 0);
+                //Log.i(">>> spinMapa onNothing", "pos " + 0);
 //                setMapaDrawable(0); // El mapa por default
 ////                if(jsonAsString != null){
 ////                    putResponse(jsonAsString);
@@ -233,44 +264,65 @@ public class IntentMapa extends AppCompatActivity {
         return params;
     }
 
+    public void putInfoThenMapa(String json, int pos) {
+        ServerMapsResponse serverMapsResponse = ServerMapsResponse.parseJSON(json);
+        GeneralMap mapaInfo = serverMapsResponse.getData().getMapList().get(spinnerMapa.getSelectedItemPosition());
+        List<GeneralMap.DayStands> dayStandListInfo = mapaInfo.getByDayActs();
+        List<Stand> fixedStandList = mapaInfo.getPermanentActs();
+        if(dayStandListInfo.size() != 0) {
+            putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(pos).getDay()));
+        } else if (fixedStandList.size() != 0){
+            putMapa(fixedStandList);
+        }
+    }
+
     public static void putResponse(String responseString){
-        Log.i(">>> putResponse", "pos Fecha->" + adapterDia.getPosition("Fecha") + responseString);
+        //Log.i(">>> putResponse", "pos Fecha->" + adapterDia.getPosition("Fecha") + responseString.substring(1,5));
         int responseCode;
-        final ServerMapsResponse serverMapsResponse = ServerMapsResponse.parseJSON(responseString);
+        ServerMapsResponse serverMapsResponse = ServerMapsResponse.parseJSON(responseString);
         responseCode = serverMapsResponse.getRespCode();
+        adapterDia.notifyDataSetChanged();
 
 
         if(responseCode == 0){
 //            first = false;
-            final GeneralMap mapaInfo = serverMapsResponse.getData().getMapList().get(spinnerMapa.getSelectedItemPosition());
-            final List<GeneralMap.DayStands> dayStandListInfo = mapaInfo.getByDayActs();
+            GeneralMap mapaInfo = serverMapsResponse.getData().getMapList().get(spinnerMapa.getSelectedItemPosition());
+            List<GeneralMap.DayStands> dayStandListInfo = mapaInfo.getByDayActs();
             List<Stand> fixedStandList = mapaInfo.getPermanentActs();
+            //Log.i(">>> putResponse", "dayStandList.size=" + dayStandListInfo.size());
             if(dayStandListInfo.size() != 0) {  // Hay al menos un día con actividades no fijas
+                //Log.i(">>> putResponse", "pos Fecha->" + adapterDia.getPosition("Fecha"));
                 if(adapterDia.getPosition("Fecha") == 0) {
                     for (GeneralMap.DayStands standInfo : dayStandListInfo) {
-                        adapterDia.add(standInfo.getDay());
+                        dayList.add(standInfo.getDay());
                     }
-                    adapterDia.remove("Fecha");
-                    adapterDia.notifyDataSetChanged();
+                    dayList.remove("Fecha");
                 }
-                spinnerDia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(position).getDay()));
-                        Log.i(">>> onItemSelected", dayStandListInfo.get(position).getDay());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-//                        putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(0).getDay()));
+                adapterDia.notifyDataSetChanged();
+                if(!first) {
+                    putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(0).getDay()));
+                }
+//                if(first) {
+//                    spinnerDia.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                        @Override
+//                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                            putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(position).getDay()));
+//                            Log.i(">>> onItemSelected", dayStandListInfo.get(position).getDay());
+//                        }
+//
+//                        @Override
+//                        public void onNothingSelected(AdapterView<?> parent) {
+////                        putMapa(mapaInfo.getAllStandsOnDay(dayStandListInfo.get(0).getDay()));
 //                        Log.i(">>> onNothingSelected", dayStandListInfo.get(0).getDay());
-                    }
-                });
-//                spinnerDia.setSelection(0);
+//                        }
+//                    });
+//                }
+
             } else if (fixedStandList.size() != 0){    // Solo hay actividades fijas en ese mapa
                 putMapa(fixedStandList);
+                Toast.makeText(context, "Las actividades no cambian en este piso", Toast.LENGTH_SHORT).show();
             } else {    // No hay actividades en ese mapa
-                Toast.makeText(context, "No hay actividades en este mapa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "No hay actividades en este piso", Toast.LENGTH_SHORT).show();
             }
         } else {
             Toast.makeText(context, "Hubo un error " + responseCode
@@ -328,7 +380,7 @@ public class IntentMapa extends AppCompatActivity {
     }
 
     public static Bitmap getMapaDibujado(List<Stand> standList) {
-        Log.i(">>> getMapaDibujado", "size 0->" + standList.get(0).getRgbColor().length);
+        //Log.i(">>> getMapaDibujado", "size 0->" + standList.get(0).getRgbColor().length);
         BitmapFactory.Options myOptions = new BitmapFactory.Options();
         myOptions.inDither = true;
         myOptions.inScaled = false;
@@ -401,7 +453,7 @@ public class IntentMapa extends AppCompatActivity {
             int x, y, w, h, xOrigNotTablet;
             xOrigNotTablet = Constants.H - Constants.Y_OFFSET;
             for (Stand stand : standList) {
-                Log.i(">>>  -> for", "size ->" + stand.getRgbColor().length);
+                //Log.i(">>>  -> for", "size ->" + stand.getRgbColor().length);
                 int[] color = {125,125,125};
                 if(stand.getRgbColor().length == 3) {
                     color = stand.getRgbColor();
