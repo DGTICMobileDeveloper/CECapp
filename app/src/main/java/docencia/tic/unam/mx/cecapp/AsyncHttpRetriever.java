@@ -131,15 +131,18 @@ public class AsyncHttpRetriever extends AsyncHttpClient {
         this.context = (Activity) context;
     }
 
-    public AsyncHttpRetriever(ImageView map, byte origen, boolean isTablet, Activity activity,
-                              RequestParams params, String stringPrueba){
+    public AsyncHttpRetriever(byte origen, Activity activity, RequestParams params, String stringPrueba){
         this.client = new AsyncHttpClient();
-        this.mapa = map;
         this.origen = origen;
-        this.tablet = isTablet;
         this.context = activity;
-        IntentMapa.jsonAsString = stringPrueba;
-        IntentMapa.putResponse(stringPrueba);
+        this.params = params;
+        // debbug
+        if(origen == Constants.MODE_GET_EVENT_MAP) {
+            IntentMapa.jsonAsString = stringPrueba;
+            IntentMapa.putResponse(stringPrueba);
+        }else {
+            IntentSimpleMap.putResponse(stringPrueba);
+        }
     }
 
     public void postCommand(String link){

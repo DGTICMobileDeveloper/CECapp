@@ -26,6 +26,7 @@
     <string name="config_save_msg">Cambios guardados en</string>
     <string name="config_save_action">Deshacer</string>
     <string name="pre_inscription">Preinscripción</string>
+    <string name="evento_mapa">Mapa del evento</string>
 
     <string name="no_id_msg">No se encuentra registrado en el sistema. \nPara registrarse vaya al menú, a la sección \'Registro\' ingrese sus datos y guardelos</string>
 

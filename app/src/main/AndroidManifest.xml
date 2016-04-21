@@ -42,6 +42,11 @@
             android:parentActivityName="docencia.tic.unam.mx.cecapp.IntentEvento">
         </activity>
         <activity
+            android:label="IntentSimleMap"
+            android:name=".IntentSimpleMap"
+            android:parentActivityName="docencia.tic.unam.mx.cecapp.IntentEvento">
+        </activity>
+        <activity
             android:label="IntentShowInfoEvent"
             android:name=".IntentShowInfoEvent"
             android:parentActivityName="docencia.tic.unam.mx.cecapp.IntentEvento">

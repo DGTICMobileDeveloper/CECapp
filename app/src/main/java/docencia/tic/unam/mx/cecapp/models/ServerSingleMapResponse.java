@@ -35,9 +35,13 @@ public class ServerSingleMapResponse {
     }
 
     public class RespData {
+        int map;
         @SerializedName("location")
         Stand stand;
 
+        public int getMap() {
+            return map;
+        }
         public Stand getStand() {
             return stand;
         }

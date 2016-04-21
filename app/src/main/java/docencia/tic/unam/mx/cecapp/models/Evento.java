@@ -98,6 +98,40 @@ public class Evento {
         return this.programList;
     }
 
+    public int getActivityIdByPosition(int pos){
+        Program.Activity act = getActivityByPosition(pos);
+        if(act != null) {
+            return act.getId();
+        } else {
+            return -1;
+        }
+    }
+
+    public Program.Activity getActivityByPosition(int pos){
+        List<Program.Activity> activityList;
+        Program.Activity act = null;
+        int x = 1;
+        for (Program program: programList) {
+            activityList = program.getActivityList();
+            for (Program.Activity activity: activityList) {
+                if(x == pos){
+                    act = activity;
+                }
+                x++;
+            }
+        }
+        return act;
+    }
+
+    public String getActivityNameByPosition(int pos){
+        Program.Activity act = getActivityByPosition(pos);
+        if(act != null) {
+            return act.getName();
+        } else {
+            return "";
+        }
+    }
+
     public class Organizer{
         @SerializedName("nombre")
         String name;

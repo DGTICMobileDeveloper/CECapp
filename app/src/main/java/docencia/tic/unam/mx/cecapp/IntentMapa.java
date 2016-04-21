@@ -55,7 +55,7 @@ public class IntentMapa extends AppCompatActivity {
 
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         Bundle extras = getIntent().getExtras();
-        getSupportActionBar().setTitle("Mapa de la actividad " + Long.toString(extras.getLong(Constants.ID_ACTIVITY)));
+        getSupportActionBar().setTitle("Mapa del evento");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -173,9 +173,8 @@ public class IntentMapa extends AppCompatActivity {
         });
 
 
-        AsyncHttpRetriever asyncHttpRetriever = new AsyncHttpRetriever(mapa, Constants.MODE_GET_EVENT_MAP,
-                isTablet, this, getRequestParams(extras.getLong(Constants.ID_EVENT),
-                extras.getLong(Constants.ID_ACTIVITY) ) , strigPrueba);
+        AsyncHttpRetriever asyncHttpRetriever = new AsyncHttpRetriever(Constants.MODE_GET_EVENT_MAP,
+                this, getRequestParams(extras.getLong(Constants.ID_EVENT)) , strigPrueba);
         //asyncHttpRetriever.postCommand(Constants.BASE_LINK_GET_EVENT_MAP);
     }
 
@@ -257,10 +256,9 @@ public class IntentMapa extends AppCompatActivity {
         }
     }
 
-    private RequestParams getRequestParams(long eid, long acid){
+    private RequestParams getRequestParams(long eid){
         RequestParams params = new RequestParams();
         params.put(Constants.SERVER_KEY_EVENT_ID, eid);
-        params.put(Constants.SERVER_KEY_EVENT_ACTIVITY_ID, acid);
         return params;
     }
 

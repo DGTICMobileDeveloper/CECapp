@@ -5,10 +5,10 @@
         android:orderInCategory="N" N establece el orden/prioridad del item para mostrar, a menor valor mayor la prioridad
         -->
     <item
-        android:id="@+id/mPreinscripcion"
-        android:orderInCategory="5"
-        android:icon="@drawable/ic_1"
+        android:id="@+id/evento_mapa"
+        android:orderInCategory="1"
+        android:icon="@android:drawable/ic_dialog_map"
         app:showAsAction="ifRoom"
-        android:title="@string/pre_inscription">
+        android:title="@string/evento_mapa">
     </item>
 </menu>

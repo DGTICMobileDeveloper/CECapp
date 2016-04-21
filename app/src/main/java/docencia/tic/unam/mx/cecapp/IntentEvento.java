@@ -2,6 +2,7 @@ package docencia.tic.unam.mx.cecapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -169,13 +170,16 @@ public class IntentEvento extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.mPreinscripcion:
-                if(!estadoEvento)
-                    Toast.makeText(this, "Preinscrito >", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(this, "Removido  ><", Toast.LENGTH_SHORT).show();
-                estadoEvento = !estadoEvento;
-                invalidateOptionsMenu();
+            case R.id.evento_mapa:
+//                if(!estadoEvento)
+//                    Toast.makeText(this, "Preinscrito >", Toast.LENGTH_SHORT).show();
+//                else
+//                    Toast.makeText(this, "Removido  ><", Toast.LENGTH_SHORT).show();
+//                estadoEvento = !estadoEvento;
+//                invalidateOptionsMenu();
+                Intent intent = new Intent(this, IntentMapa.class);
+                intent.putExtra(Constants.ID_EVENT, AsyncHttpRetriever.evento.getId());
+                this.startActivity(intent);
                 return true;
             case R.id.home:
 
@@ -186,12 +190,12 @@ public class IntentEvento extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        MenuItem mPreinsc = menu.findItem(R.id.mPreinscripcion);
-        if(estadoEvento)
-            mEstadoEventoIcon = R.drawable.ic_3;
-        else
-            mEstadoEventoIcon = R.drawable.ic_1;
-        mPreinsc.setIcon(ContextCompat.getDrawable(this, mEstadoEventoIcon));
+//        MenuItem mPreinsc = menu.findItem(R.id.evento_mapa);
+//        if(estadoEvento)
+//            mEstadoEventoIcon = R.drawable.ic_3;
+//        else
+//            mEstadoEventoIcon = R.drawable.ic_1;
+//        mPreinsc.setIcon(ContextCompat.getDrawable(this, mEstadoEventoIcon));
 
         return super.onPrepareOptionsMenu(menu);
     }

@@ -21,6 +21,7 @@ public class Constants {
     public static final String LOCATION_EVENT_LAT_LON = "http://maps.google.com/maps?daddr=19.3094213,-99.1765897 (\"Centro de Exposiciones y Congresos UNAM\")";
 
     public static final String ID_ACTIVITY = "ID_ACTIVITY";
+    public static final String NAME_ACTIVITY = "NAME_ACTIVITY";
     public static final String EVENT_INFO_NAME = "nombre";
     public static final String EVENT_INFO_URL = "url";
     public static final String EVENT_INFO_FB = "fb";
@@ -60,6 +61,7 @@ public class Constants {
     public static final byte MODE_INTEREST_EVENT_LIST = 8;
     public static final byte MODE_SEARCH_EVENT = 9;
     public static final byte MODE_GET_EVENT_MAP = 10;
+    public static final byte MODE_GET_SINGLE_EVENT_MAP = 11;
     //public static final byte MODE_DELETE_USERS = 9;
     public static final String BASE_LINK_EVENT_LIST = "http://132.248.108.7/cec/Controladores/listaEventos.php";
     public static final String BASE_LINK_EVENT_LIST_MONTH = "http://132.248.108.7/cec/Controladores/listEventsOfThisMonth.php";
@@ -72,6 +74,7 @@ public class Constants {
     public static final String BASE_LINK_UPDATE_USER = "http://132.248.108.7/cec/Controladores/updateUser.php";
     public static final String BASE_LINK_SEARCH_EVENT = "http://132.248.108.7/cec/Controladores/searchEvents.php";
     public static final String BASE_LINK_GET_EVENT_MAP= "http://132.248.108.7/cec/Controladores/getDataMap.php";
+    public static final String BASE_LINK_GET_SINGLE_EVENT_MAP= "http://132.248.108.7/cec/Controladores/getDataSingleMap.php";
     //public static final String BASE_LINK_CLEAR_USERS = "http://132.248.108.7/cec/Controladores/deleteUsers.php";
 
     public static final String SERVER_KEY_EVENT_LIST = "page";

@@ -22,6 +22,7 @@ import docencia.tic.unam.mx.cecapp.AsyncHttpRetriever;
 import docencia.tic.unam.mx.cecapp.Constants;
 import docencia.tic.unam.mx.cecapp.IntentEvento;
 import docencia.tic.unam.mx.cecapp.IntentMapa;
+import docencia.tic.unam.mx.cecapp.IntentSimpleMap;
 import docencia.tic.unam.mx.cecapp.Interfaces.CustomFragmentLifeCycle;
 import docencia.tic.unam.mx.cecapp.R;
 import docencia.tic.unam.mx.cecapp.adapters.CustomExpandableListAdapter;
@@ -97,9 +98,9 @@ public class EventoExposFragment extends Fragment implements CustomFragmentLifeC
 
                 public boolean onChildClick(ExpandableListView parent, View v,
                                             int groupPosition, int childPosition, long id) {
-                    Intent intent = new Intent(fragmentActivity, IntentMapa.class);
+                    Intent intent = new Intent(fragmentActivity, IntentSimpleMap.class);
                     intent.putExtra(Constants.ID_EVENT, AsyncHttpRetriever.evento.getId());
-                    long activityId = 1;
+                    int activityId = 1;
                     for (int x = 0; x <= groupPosition; x++) {
                         if (x > 0){
                             activityId += mProgramList.get(x-1).getActivityList().size();
@@ -107,7 +108,8 @@ public class EventoExposFragment extends Fragment implements CustomFragmentLifeC
                         else
                             activityId += childPosition;
                     }
-                    intent.putExtra(Constants.ID_ACTIVITY, activityId);
+                    intent.putExtra(Constants.ID_ACTIVITY, AsyncHttpRetriever.evento.getActivityIdByPosition(activityId));
+                    intent.putExtra(Constants.NAME_ACTIVITY, AsyncHttpRetriever.evento.getActivityNameByPosition(activityId));
                     fragmentActivity.startActivity(intent);
                     return true;
                 }
