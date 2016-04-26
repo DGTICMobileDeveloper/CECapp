@@ -363,6 +363,11 @@ public class MainActivity extends AppCompatActivity
         switch(item.getItemId()) {
             case R.id.action_search:
                 return true;
+            case R.id.debugg:
+                Intent intent = new Intent(this, IntentMapa.class);
+                intent.putExtra(Constants.ID_EVENT, 1);
+                this.startActivity(intent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
