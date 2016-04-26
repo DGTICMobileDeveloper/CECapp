@@ -2,6 +2,7 @@ package docencia.tic.unam.mx.cecapp;
 
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -10,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,7 @@ import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import docencia.tic.unam.mx.cecapp.models.GeneralMap;
 import docencia.tic.unam.mx.cecapp.models.OldStand;
@@ -354,8 +357,9 @@ public class IntentMapa extends AppCompatActivity {
                             if (xPixels <= (coord.getX() + coord.getW()) &&
                                     yPixels <= (coord.getY() + coord.getH())) {
                                 showToast = false;
-                                Toast.makeText(context, "id:" + stand.getId(),
-                                        Toast.LENGTH_SHORT).show();
+                                showAlertListDialog(stand);
+                                //Toast.makeText(context, "id:" + stand.getId(),
+                                //        Toast.LENGTH_SHORT).show();
                                 break;
                             }
                         }
@@ -364,8 +368,9 @@ public class IntentMapa extends AppCompatActivity {
                             if (xPixels <= (coord.getY() + coord.getH()) &&
                                     yPixels <= (coord.getX() + coord.getW())) {
                                 showToast = false;
-                                Toast.makeText(context, "id:" + stand.getId(),
-                                        Toast.LENGTH_SHORT).show();
+                                showAlertListDialog(stand);
+                                //Toast.makeText(context, "id:" + stand.getId(),
+                                 //       Toast.LENGTH_SHORT).show();
                                 break;
                             }
                         }
@@ -490,5 +495,73 @@ public class IntentMapa extends AppCompatActivity {
 
             return mutableBitmap;
         }
+    }
+
+    private static void showAlertListDialog(Stand stand){
+        List<Stand.SimpleActivity> activityList = stand.getActivityList();
+        String aux = "%s\t%s";
+
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(context);
+        builderSingle.setIcon(android.R.drawable.ic_dialog_info);
+        builderSingle.setTitle(String.format("Actividades en el stand %d:", stand.getId()));
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                context, android.R.layout.select_dialog_singlechoice);
+        Log.i(">>> IntentMapa", "Size " + activityList.size());
+        if(activityList.size() > 0){
+            for (Stand.SimpleActivity activity: activityList){
+                arrayAdapter.add(String.format(aux, activity.getSchedule(), activity.getName()));
+            }
+        } else {
+            Stand.SimpleActivity activity = stand.getActivity();
+            Log.i(">>> IntentMapa", "Solo 1 " + ((activity != null) ? activity.getName():"Vacío"));
+            if(activity != null){
+                arrayAdapter.add(String.format(aux, activity.getSchedule(), activity.getName()));
+            } else {
+                arrayAdapter.add("Vacío");
+            }
+        }
+
+        builderSingle.setNeutralButton("Cerrar",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        /*
+        builderSingle.setNegativeButton(
+                "cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                */
+
+        builderSingle.setAdapter(
+                arrayAdapter,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        AlertDialog.Builder builderInner = new AlertDialog.Builder(context);
+                        builderInner.setMessage(strName);
+                        builderInner.setTitle("Your Selected Item is");
+                        builderInner.setPositiveButton(
+                                "Ok",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(
+                                            DialogInterface dialog,
+                                            int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builderInner.show();
+                    }
+                });
+        builderSingle.show();
     }
 }
