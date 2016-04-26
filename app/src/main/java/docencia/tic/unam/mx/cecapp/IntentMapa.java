@@ -522,6 +522,7 @@ public class IntentMapa extends AppCompatActivity {
             }
         }
 
+
         builderSingle.setNeutralButton("Cerrar",
                 new DialogInterface.OnClickListener() {
                     @Override
