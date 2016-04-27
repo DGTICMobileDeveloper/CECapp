@@ -19,6 +19,10 @@ public class Constants {
     public static final String LOCATION_EVENT = "Av. del Imán #10, Cuidad Universitaria, Coyoacán, Ciudad de México";
     public static final String CEC_WEB_PAGE = "http://www.cec.unam.mx/index.action";
     public static final String LOCATION_EVENT_LAT_LON = "http://maps.google.com/maps?daddr=19.3094213,-99.1765897 (\"Centro de Exposiciones y Congresos UNAM\")";
+    public static final String CEC_FB = "https://www.facebook.com/pages/Centro-De-Exposiciones-Y-Congresos-Unam/295698220624920";
+    public static final String CEC_FB_APP = "fb://facewebmodal/f?href=295698220624920";
+    public static final String CEC_TW = "https://twitter.com/UNAM_MX";
+    public static final String CEC_YT = "https://www.youtube.com/channel/UCDaRHOeEHfD3ZyA_zMXzFSA/feed";
 
     public static final String ID_ACTIVITY = "ID_ACTIVITY";
     public static final String NAME_ACTIVITY = "NAME_ACTIVITY";

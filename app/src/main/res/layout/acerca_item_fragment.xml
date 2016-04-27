@@ -5,7 +5,17 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_extremos_pequeño">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logoCEC"
+            android:src="@drawable/ic_splash_screen"
+            android:layout_gravity="center"
+            android:paddingBottom="@dimen/padding_extremos"
+            android:paddingTop="@dimen/padding_extremos"/>
 
         <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
             android:layout_width="fill_parent"
@@ -25,6 +35,52 @@
             ext:documentView_textSubPixel="true"
             ext:documentView_wordSpacingMultiplier="1"
             android:background="#003e4dd1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mapaCEC"
+            android:src="@drawable/mapa_cec"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:paddingBottom="@dimen/padding_extremos"
+            android:paddingTop="@dimen/padding_extremos"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cec_follow"
+            android:id="@+id/textView2" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fb"
+                android:id="@+id/ibFb" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tw"
+                android:id="@+id/ibTw" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_yt"
+                android:id="@+id/ibYt" />
+        </LinearLayout>
+
+
         <!--
         <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
@@ -37,14 +93,7 @@
             ext:documentView_textFormat="plain"
             ext:documentView_textSize="16sp" />
          -->
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/logoCEC"
-            android:src="@drawable/ic_splash_screen"
-            android:layout_gravity="center"
-            android:paddingBottom="@dimen/padding_extremos"
-            android:paddingTop="@dimen/padding_extremos"/>
+
 
 
     </LinearLayout>
