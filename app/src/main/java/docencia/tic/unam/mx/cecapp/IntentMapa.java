@@ -506,15 +506,15 @@ public class IntentMapa extends AppCompatActivity {
         builderSingle.setTitle(String.format("Actividades en el stand %d:", stand.getId()));
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                context, android.R.layout.select_dialog_singlechoice);
-        Log.i(">>> IntentMapa", "Size " + activityList.size());
+                context, R.layout.dialog_list_item);
+        //Log.i(">>> IntentMapa", "Size " + activityList.size());
         if(activityList.size() > 0){
             for (Stand.SimpleActivity activity: activityList){
                 arrayAdapter.add(String.format(aux, activity.getSchedule(), activity.getName()));
             }
         } else {
             Stand.SimpleActivity activity = stand.getActivity();
-            Log.i(">>> IntentMapa", "Solo 1 " + ((activity != null) ? activity.getName():"Vacío"));
+//            Log.i(">>> IntentMapa", "Solo 1 " + ((activity != null) ? activity.getName():"Vacío"));
             if(activity != null){
                 arrayAdapter.add(String.format(aux, activity.getSchedule(), activity.getName()));
             } else {
@@ -546,21 +546,21 @@ public class IntentMapa extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String strName = arrayAdapter.getItem(which);
-                        AlertDialog.Builder builderInner = new AlertDialog.Builder(context);
-                        builderInner.setMessage(strName);
-                        builderInner.setTitle("Your Selected Item is");
-                        builderInner.setPositiveButton(
-                                "Ok",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(
-                                            DialogInterface dialog,
-                                            int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                        builderInner.show();
+//                        String strName = arrayAdapter.getItem(which);
+//                        AlertDialog.Builder builderInner = new AlertDialog.Builder(context);
+//                        builderInner.setMessage(strName);
+//                        builderInner.setTitle("Your Selected Item is");
+//                        builderInner.setPositiveButton(
+//                                "Ok",
+//                                new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(
+//                                            DialogInterface dialog,
+//                                            int which) {
+//                                        dialog.dismiss();
+//                                    }
+//                                });
+//                        builderInner.show();
                     }
                 });
         builderSingle.show();

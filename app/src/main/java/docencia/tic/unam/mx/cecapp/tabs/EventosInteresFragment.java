@@ -61,11 +61,11 @@ public class EventosInteresFragment extends Fragment {
                 break;
             }
         }
-        Log.i(">>> Interests", Constants.BASE_LINK_EVENT_LIST);
+//        Log.i(">>> Interests", Constants.BASE_LINK_EVENT_LIST);
         params.put(Constants.SERVER_KEY_EVENTS_FILTER, interests);
-        Log.i(">>> Interests", Constants.SERVER_KEY_EVENTS_FILTER + interests);
+//        Log.i(">>> Interests", Constants.SERVER_KEY_EVENTS_FILTER + interests);
         params.put(Constants.SERVER_KEY_GET_USER_EVENTS, sharedPreferencesInfo.getLong(Constants.USER_ID, -1));
-        Log.i(">>> Interests", Constants.SERVER_KEY_GET_USER_EVENTS + sharedPreferencesInfo.getLong(Constants.USER_ID, -1));
+//        Log.i(">>> Interests", Constants.SERVER_KEY_GET_USER_EVENTS + sharedPreferencesInfo.getLong(Constants.USER_ID, -1));
 //        Toast.makeText(getActivity(),Constants.BASE_LINK_EVENT_LIST + "\n" +
 //                Constants.SERVER_KEY_EVENTS_FILTER + interests + "\n" +
 //                Constants.SERVER_KEY_GET_USER_EVENTS + sharedPreferencesInfo.getLong(Constants.USER_ID, -1),

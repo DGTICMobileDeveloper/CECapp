@@ -4,7 +4,10 @@ package docencia.tic.unam.mx.cecapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -13,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +24,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.Profile;
+import com.facebook.share.ShareApi;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareDialog;
 import com.loopj.android.http.RequestParams;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 
 import docencia.tic.unam.mx.cecapp.Interfaces.CustomFragmentLifeCycle;
 import docencia.tic.unam.mx.cecapp.adapters.MainPageAdapter;
@@ -35,6 +56,46 @@ public class IntentEvento extends AppCompatActivity {
     protected static Drawable preInsDrawable;
     protected static Drawable quitInsDrawable;
     protected static FloatingActionButton floatingActionButton;
+    private boolean canPresentShareDialog;
+    private boolean canPresentShareDialogWithPhotos;
+    private boolean isFaceBookOn;
+    private boolean isTwitterOn;
+    private CallbackManager callbackManager;
+    private ShareDialog shareDialog;
+    // El callback de las cosas que se comparten en FB
+    private FacebookCallback<Sharer.Result> shareCallback = new FacebookCallback<Sharer.Result>() {
+        @Override
+        public void onCancel() {
+            Log.d("Facebook", "Post Canceled");
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+            Log.d("HelloFacebook", String.format("Error: %s", error.toString()));
+            String title = "Error";
+            String alertMessage = error.getMessage();
+            showResult(title, alertMessage);
+        }
+
+        @Override
+        public void onSuccess(Sharer.Result result) {
+            Log.d("HelloFacebook", "Success!");
+            if (result.getPostId() != null) {
+                String title = "success";
+                String id = result.getPostId();
+                String alertMessage = "Post posteado satisfactoriamente";
+                showResult(title, alertMessage);
+            }
+        }
+
+        private void showResult(String title, String alertMessage) {
+            new AlertDialog.Builder(IntentEvento.this)
+                    .setTitle(title)
+                    .setMessage(alertMessage)
+                    .setPositiveButton("Ok", null)
+                    .show();
+        }
+    };
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -136,6 +197,28 @@ public class IntentEvento extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         tabLayout = (TabLayout) findViewById(R.id.evento_sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        /** Redes sociales*/
+//        if(AccessToken.getCurrentAccessToken() != null ||
+//                Profile.getCurrentProfile() != null){
+//            isFaceBookOn = true;
+//        } else {
+//            isFaceBookOn = false;
+//        }
+        isFaceBookOn = (AccessToken.getCurrentAccessToken() != null || Profile.getCurrentProfile() != null);
+        isTwitterOn = (TwitterCore.getInstance().getSessionManager().getActiveSession() != null);
+        if(isFaceBookOn) {
+            callbackManager = CallbackManager.Factory.create();
+            // Elemento que se puede utilizar al compartir (Como el preview)
+            shareDialog = new ShareDialog(this);
+            shareDialog.registerCallback(
+                    callbackManager,
+                    shareCallback);
+            // Can we present the share dialog for regular links?
+            canPresentShareDialog = ShareDialog.canShow(ShareLinkContent.class);
+            // Can we present the share dialog for photos?
+            canPresentShareDialogWithPhotos = ShareDialog.canShow(SharePhotoContent.class);
+        }
     }
     //POSITION sirve para guardar la pestaña seleccionada antes de un cambio y recuperarla
 
@@ -164,6 +247,11 @@ public class IntentEvento extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.secondary, menu);
+        // Para cambiar lo que dice el submenú
+//        MenuItem fbItem = menu.findItem(R.id.compartir_fb);
+//        fbItem.setTitle((isFaceBookOn ? getResources().getString(R.string.share_fb):getResources().getString(R.string.share_fb_not)));
+//        MenuItem twItem = menu.findItem(R.id.compartir_tw);
+//        twItem.setTitle((isTwitterOn ? getResources().getString(R.string.share_tw):getResources().getString(R.string.share_tw_not)));
         return super.onCreateOptionsMenu(menu);
     }
     @Override
@@ -181,8 +269,46 @@ public class IntentEvento extends AppCompatActivity {
                 intent.putExtra(Constants.ID_EVENT, AsyncHttpRetriever.evento.getId());
                 this.startActivity(intent);
                 return true;
-            case R.id.home:
+            case R.id.compartir_fb:
+                if(isFaceBookOn){
+                    Bitmap image = BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_splash_screen);
 
+                    SharePhoto sharePhoto = new SharePhoto.Builder().setBitmap(image).build();
+                    ArrayList<SharePhoto> photos = new ArrayList<>();
+                    photos.add(sharePhoto);
+
+                    SharePhotoContent sharePhotoContent =
+                            new SharePhotoContent.Builder()
+                                    .setPhotos(photos).setPlaceId("295698220624920")
+//                                    .setContentUrl(Uri.parse(Constants.CEC_WEB_PAGE))
+                                    .build();
+                    if (canPresentShareDialogWithPhotos) {
+                        shareDialog.show(sharePhotoContent);
+                    } else {
+                        ShareApi.share(sharePhotoContent, shareCallback);
+                    }
+                }else {
+                    Toast.makeText(this, getResources().getString(R.string.share_fb_not),
+                            Toast.LENGTH_LONG).show();
+                }
+                return true;
+            case R.id.compartir_tw:
+                if(isTwitterOn){
+                    final TweetComposer.Builder builder = new TweetComposer.Builder(this)
+                            .text("#CEC_UNAM");
+//                    try {
+//                        URL url;
+//                        url = new URL(Constants.CEC_WEB_PAGE);
+//                        builder.url(url);
+//                    } catch (MalformedURLException e){
+//                        Log.i(">>> Twitter", e.getMessage());
+//                    }
+                    builder.show();
+                }else {
+                    Toast.makeText(this, getResources().getString(R.string.share_tw_not),
+                            Toast.LENGTH_LONG).show();
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

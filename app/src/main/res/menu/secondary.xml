@@ -5,6 +5,25 @@
         android:orderInCategory="N" N establece el orden/prioridad del item para mostrar, a menor valor mayor la prioridad
         -->
     <item
+        android:id="@+id/compartir"
+        android:orderInCategory="2"
+        android:icon="@android:drawable/ic_menu_share"
+        app:showAsAction="ifRoom"
+        android:title="@string/evento_compartir">
+        <menu>
+            <item
+                android:id="@+id/compartir_fb"
+                android:title="@string/share_fb"
+                android:icon="@drawable/com_facebook_button_icon_blue"
+                />
+            <item
+                android:id="@+id/compartir_tw"
+                android:title="@string/share_tw"
+                android:icon="@drawable/tw__composer_logo_blue"
+                />
+        </menu>
+    </item>
+    <item
         android:id="@+id/evento_mapa"
         android:orderInCategory="1"
         android:icon="@android:drawable/ic_dialog_map"

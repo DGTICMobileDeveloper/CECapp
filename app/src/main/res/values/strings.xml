@@ -28,6 +28,11 @@
     <string name="config_save_action">Deshacer</string>
     <string name="pre_inscription">Preinscripción</string>
     <string name="evento_mapa">Mapa del evento</string>
+    <string name="evento_compartir">Compartir</string>
+    <string name="share_fb">Post</string>
+    <string name="share_tw">Tweet</string>
+    <string name="share_fb_not">Debes iniciar sesión para hacer un post</string>
+    <string name="share_tw_not">Debes iniciar sesión para hacer un tweet</string>
 
     <string name="no_id_msg">No se encuentra registrado en el sistema. \nPara registrarse vaya al menú, a la sección \'Registro\' ingrese sus datos y guardelos</string>
 

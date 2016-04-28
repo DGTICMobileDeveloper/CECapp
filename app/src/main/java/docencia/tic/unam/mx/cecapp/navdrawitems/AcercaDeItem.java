@@ -2,10 +2,13 @@ package docencia.tic.unam.mx.cecapp.navdrawitems;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,12 +59,24 @@ public class AcercaDeItem extends Fragment {
             Intent intent;
             switch (v.getId()){
                 case R.id.ibFb:
+                    Log.i(">>> AcercaDeItem", "FB");
+                    Uri uri = Uri.parse(Constants.CEC_FB);
                     try {
-                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CEC_FB));
-                        startActivity(intent);
-                    } catch(Exception e) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CEC_FB)));
+                        ApplicationInfo applicationInfo = getActivity().getPackageManager()
+                                .getApplicationInfo("com.facebook.katana", 0);
+                        if (applicationInfo.enabled) {
+                            uri = Uri.parse("fb://facewebmodal/f?href=" + Constants.CEC_FB);
+                        }
+                    } catch (PackageManager.NameNotFoundException ignored) {
                     }
+                    intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+//                    try {
+//                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CEC_FB));
+//                        startActivity(intent);
+//                    } catch(Exception e) {
+//                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CEC_FB)));
+//                    }
                     break;
                 case R.id.ibTw:
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.CEC_TW));
