@@ -61,6 +61,7 @@ public class Constants {
     public static final byte MODE_SEARCH_EVENT = 9;
     public static final byte MODE_GET_EVENT_MAP = 10;
     //public static final byte MODE_DELETE_USERS = 9;
+    //Modificar IP
     public static final String BASE_LINK_EVENT_LIST = "http://132.248.108.6/cec/Controladores/listaEventos.php";
     public static final String BASE_LINK_EVENT_LIST_MONTH = "http://132.248.108.6/cec/Controladores/listEventsOfThisMonth.php";
     public static final String BASE_LINK_EVENT = "http://132.248.108.6/cec/Controladores/datosEvento.php";
